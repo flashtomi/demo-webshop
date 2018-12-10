@@ -1,21 +1,18 @@
 package com.example.demowebshop.controller;
 
 import com.example.demowebshop.model.Product;
-import com.example.demowebshop.service.ProductService;
+import com.example.demowebshop.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ProductController {
 
-    private ProductService productService;
-
     @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+    private IProductService productService;
 
     @GetMapping("/products")
     private List<Product> getAllProduct() {
