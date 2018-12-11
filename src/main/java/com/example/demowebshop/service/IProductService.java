@@ -8,13 +8,13 @@ public interface IProductService {
 
     List<Product> getAllProducts();
 
-    Product getProductById(long id);
+    Product getProductById(int id);
 
     void saveOrUpdate(Product product);
 
-    void delete(long id);
+    void delete(int id);
 
-    void updateProductTotalAmount(long id, int count);
+    void updateProductTotalAmount(int id, int count);
 
-    void updateProductStock(long id, int amount);
+    void updateProductStock(int id, int amount);
 }

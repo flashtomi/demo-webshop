@@ -3,12 +3,11 @@ package com.example.demowebshop.controller;
 import com.example.demowebshop.model.Product;
 import com.example.demowebshop.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class ProductController {
 
     @Autowired
@@ -20,12 +19,12 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    private Product getProduct(@PathVariable("id") long id) {
+    private Product getProduct(@PathVariable("id") int id) {
         return productService.getProductById(id);
     }
 
     @DeleteMapping("/products/{id}")
-    private void deleteProduct(@PathVariable("id") long id) {
+    private void deleteProduct(@PathVariable("id") int id) {
         productService.delete(id);
     }
 

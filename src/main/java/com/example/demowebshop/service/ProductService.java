@@ -22,7 +22,7 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public Product getProductById(long id) {
+    public Product getProductById(int id) {
         return productRepository.findById(id).get();
     }
 
@@ -32,18 +32,18 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(int id) {
         productRepository.deleteById(id);
     }
 
     @Override
-    public void updateProductTotalAmount(long id, int count) {
+    public void updateProductTotalAmount(int id, int count) {
         Product product = getProductById(id);
         product.setTotalAmount(product.getTotalAmount() + count);
     }
 
     @Override
-    public void updateProductStock(long id, int amount) {
+    public void updateProductStock(int id, int amount) {
         Product product = getProductById(id);
         product.setTotalAmount(product.getStock() - amount);
     }
