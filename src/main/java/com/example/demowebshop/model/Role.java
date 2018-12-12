@@ -1,22 +1,39 @@
 package com.example.demowebshop.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
+@Entity
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int roleId;
+
     private String name;
 
-    public int getId() {
-        return id;
+    @OneToMany
+    private Set<Permission> permissions;
+
+    public Role(String name, Set<Permission> permissions) {
+        this.name = name;
+        this.permissions = permissions;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
+    public int getId() {
+        return roleId;
+    }
+
+    public void setId(int roleId) {
+        this.roleId = roleId;
     }
 
     public String getName() {
