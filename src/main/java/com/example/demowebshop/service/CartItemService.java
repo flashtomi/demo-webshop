@@ -1,10 +1,11 @@
 package com.example.demowebshop.service;
 
-import com.example.demowebshop.model.Cart;
 import com.example.demowebshop.model.CartItem;
 import com.example.demowebshop.repository.CartItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class CartItemService implements ICartItemService {
@@ -23,7 +24,7 @@ public class CartItemService implements ICartItemService {
     }
 
     @Override
-    public void removeAllCartItems(Cart cart) {
-        cartItemRepository.removeAllCartItems(cart);
+    public void removeAllCartItems(List<CartItem> cartItem) {
+        cartItemRepository.delete(cartItem);
     }
 }

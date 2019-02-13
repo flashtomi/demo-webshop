@@ -1,11 +1,12 @@
 package com.example.demowebshop.service;
 
-import com.example.demowebshop.model.Cart;
 import com.example.demowebshop.model.CartItem;
+
+import java.util.List;
 
 public interface ICartItemService {
 
     void addCartItem(CartItem cartItem);
     void removeCartItem(int CartItemId);
-    void removeAllCartItems(Cart cart);
+    void removeAllCartItems(List<CartItem> cartItem);
 }
