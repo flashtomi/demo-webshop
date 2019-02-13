@@ -4,16 +4,20 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "role")
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int roleId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     private String name;
 
     @OneToMany
     private Set<Permission> permissions;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
 
     public Role(String name, Set<Permission> permissions) {
         this.name = name;
@@ -29,11 +33,11 @@ public class Role {
     }
 
     public int getId() {
-        return roleId;
+        return id;
     }
 
-    public void setId(int roleId) {
-        this.roleId = roleId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -42,5 +46,13 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

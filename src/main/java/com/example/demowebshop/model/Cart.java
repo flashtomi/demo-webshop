@@ -4,14 +4,15 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "cart")
 public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int cartId;
+    private int id;
 
     @OneToOne
-    @JoinColumn(name = "UserId")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany
@@ -19,12 +20,12 @@ public class Cart {
 
     private double totalPrice;
 
-    public int getCartId() {
-        return cartId;
+    public int getId() {
+        return id;
     }
 
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public User getUser() {

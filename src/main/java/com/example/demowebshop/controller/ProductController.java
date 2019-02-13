@@ -3,32 +3,33 @@ package com.example.demowebshop.controller;
 import com.example.demowebshop.model.Product;
 import com.example.demowebshop.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ProductController {
 
     @Autowired
     private IProductService productService;
 
-    @GetMapping("/products")
+    @RequestMapping("/products")
     private List<Product> getAllProduct() {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/products/{id}")
+    @RequestMapping("/products/{id}")
     private Product getProduct(@PathVariable("id") int id) {
         return productService.getProductById(id);
     }
 
-    @DeleteMapping("/products/{id}")
+    @RequestMapping("/products/delete/{id}")
     private void deleteProduct(@PathVariable("id") int id) {
         productService.delete(id);
     }
 
-    @PostMapping("/products")
+    @RequestMapping("/product")
     private long saveProduct(@RequestBody Product product) {
         productService.saveOrUpdate(product);
         return product.getId();

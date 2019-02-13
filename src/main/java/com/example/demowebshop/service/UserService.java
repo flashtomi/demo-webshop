@@ -1,36 +1,18 @@
 package com.example.demowebshop.service;
 
 import com.example.demowebshop.model.User;
-import com.example.demowebshop.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class UserService implements IUserService {
+public interface UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    List<User> getAllUsers();
 
-    @Override
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        userRepository.findAll().forEach(users::add);
-        return users;
-    }
+    void deleteUser(int userId);
 
-    @Override
-    public void deleteUser(int userId) {
-        userRepository.deleteById(userId);
-    }
+    User getUserById(int userId);
 
-    @Override
-    public void addUser(User user) {
-        userRepository.save(user);
-    }
+    void save(User user);
 
-    @Override
-    public User getUserById(int userId) {
-        return userRepository.findById(userId).get();
-    }
+    User findByUsername(String username);
 }

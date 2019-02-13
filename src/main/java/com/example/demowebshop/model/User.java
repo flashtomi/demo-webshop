@@ -1,50 +1,44 @@
 package com.example.demowebshop.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private int id;
 
-    private String name;
+    private String username;
     private String email;
     private String address;
     private String password;
+    private String passwordConfirm;
 
-    @OneToOne
-    @JoinColumn(name = "roleId")
-    private Role role;
+    @ManyToMany
+    @JoinTable(name = "roleId", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     @OneToOne
     @JoinColumn(name = "cartId")
     private Cart cart;
 
-    public User(String name, String email, String address, String password, Role role, Cart cart) {
-        this.name = name;
-        this.email = email;
-        this.address = address;
-        this.password = password;
-        this.role = role;
-        this.cart = cart;
-    }
-
     public int getUserId() {
-        return userId;
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(int id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -71,19 +65,27 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
     public Cart getCart() {
         return cart;
     }
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

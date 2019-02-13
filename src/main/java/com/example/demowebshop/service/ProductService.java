@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class ProductService implements IProductService{
 
-    @Autowired(required = false)
+    @Autowired
     private ProductRepository productRepository;
 
     @Override
@@ -23,7 +23,7 @@ public class ProductService implements IProductService{
 
     @Override
     public Product getProductById(int id) {
-        return productRepository.findById(id).get();
+        return productRepository.findById(id);
     }
 
     @Override

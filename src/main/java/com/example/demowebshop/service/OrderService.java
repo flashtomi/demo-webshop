@@ -5,11 +5,11 @@ import com.example.demowebshop.model.CartItem;
 import com.example.demowebshop.model.Order;
 import com.example.demowebshop.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Service
+@Component
 public class OrderService implements IOrderService {
 
     @Autowired

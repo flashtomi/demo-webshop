@@ -3,37 +3,38 @@ package com.example.demowebshop.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "cart_item")
 public class CartItem {
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        private int cartItemId;
+        private int id;
 
-        private int quality;
+        private int quantity;
         private double price;
 
         @ManyToOne
-        @JoinColumn(name = "productId")
+        @JoinColumn(name = "product_id")
         private Product product;
 
         @ManyToOne
-        @JoinColumn(name = "cartId")
+        @JoinColumn(name = "cart_id")
         private Cart cart;
 
-        public int getCartItemId() {
-            return cartItemId;
+        public int getId() {
+            return id;
         }
 
-        public void setCartItemId(int cartItemId) {
-            this.cartItemId = cartItemId;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public int getQuality() {
-            return quality;
+        public int getQuantity() {
+            return quantity;
         }
 
-        public void setQuality(int quality) {
-            this.quality = quality;
+        public void setQuantity(int quantity) {
+            this.quantity = quantity;
         }
 
         public double getPrice() {

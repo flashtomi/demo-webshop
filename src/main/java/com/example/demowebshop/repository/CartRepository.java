@@ -1,7 +1,8 @@
 package com.example.demowebshop.repository;
 
 import com.example.demowebshop.model.Cart;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CartRepository extends CrudRepository<Cart, Integer> {
+public interface CartRepository extends JpaRepository<Cart, Integer> {
+    Cart findById(int cartId);
 }

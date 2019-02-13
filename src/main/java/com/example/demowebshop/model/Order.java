@@ -3,31 +3,27 @@ package com.example.demowebshop.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "order")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int orderId;
+    private int id;
 
     @OneToOne
-    @JoinColumn(name = "cartId")
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     @OneToOne
-    @JoinColumn(name = "cuserId")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    public Order(Cart cart, User user) {
-        this.cart = cart;
-        this.user = user;
+    public int getId() {
+        return id;
     }
 
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Cart getCart() {
