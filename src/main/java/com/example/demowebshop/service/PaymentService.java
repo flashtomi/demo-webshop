@@ -1,25 +1,35 @@
 package com.example.demowebshop.service;
 
 import com.example.demowebshop.model.PaymentServiceResponse;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PaymentService implements IPaymentService {
 
     @Override
-    @Cacheable("payment")
-    public PaymentServiceResponse callService(int amount) {
-        simulateSlowService();
+    public PaymentServiceResponse pay() {
+        connectToServer("PaymentService");
         return new PaymentServiceResponse(true);
     }
 
-    private void simulateSlowService() {
-        try {
-            long time = 3000L;
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            throw new IllegalStateException(e);
+    private int random(int min, int max) {
+        return min + (int) (Math.random() * ((max - min) + 1));
+    }
+
+    private void experienceNetworkLatency() {
+        int randomLatency = random(5, 10);
+        for (int i = 0; i < randomLatency; i++) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
         }
+    }
+
+    private void connectToServer(String server) {
+        System.out.print("Connecting to " + server + "... ");
+        experienceNetworkLatency();
+        System.out.print("Connected!" + "\n");
     }
 }

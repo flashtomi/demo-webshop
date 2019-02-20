@@ -27,7 +27,7 @@ public class OrderService implements IOrderService {
     public double getOrderTotal(int cartId) {
         double total=0;
         Cart cart = cartService.getCartByCartId(cartId);
-        List<CartItem> cartItems = cart.getCartItem();
+        List<CartItem> cartItems = cart.getCartItems();
 
         for(CartItem item: cartItems){
             total += item.getPrice();

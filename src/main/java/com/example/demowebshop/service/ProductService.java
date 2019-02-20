@@ -41,10 +41,4 @@ public class ProductService implements IProductService{
         Product product = getProductById(id);
         product.setTotalAmount(product.getTotalAmount() + count);
     }
-
-    @Override
-    public void updateProductStock(int id, int amount) {
-        Product product = getProductById(id);
-        product.setTotalAmount(product.getStock() - amount);
-    }
 }

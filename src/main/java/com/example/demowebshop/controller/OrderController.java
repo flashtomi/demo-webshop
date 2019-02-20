@@ -5,6 +5,7 @@ import com.example.demowebshop.model.Order;
 import com.example.demowebshop.model.User;
 import com.example.demowebshop.service.ICartService;
 import com.example.demowebshop.service.IOrderService;
+import com.example.demowebshop.service.PaymentCacheProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,9 @@ public class OrderController {
     @Autowired
     private IOrderService orderService;
 
+    @Autowired
+    private PaymentCacheProxy paymentCacheProxy;
+
     @RequestMapping("/order/{cartId}")
     public String createOrder(@PathVariable("cartId") int cartId) {
 
@@ -31,6 +35,10 @@ public class OrderController {
         order.setUser(user);
 
         orderService.addOrder(order);
+
+        paymentCacheProxy.pay(order.getCart().getTotalPrice());
+
+        cartService.notifyObservers(cartId);
 
         return "redirect:/checkout?cartId=" + cartId;
     }

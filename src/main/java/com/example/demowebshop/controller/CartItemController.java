@@ -35,7 +35,7 @@ public class CartItemController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Cart cart = user.getCart();
         System.out.println(cart);
-        List<CartItem> cartItems = cart.getCartItem();
+        List<CartItem> cartItems = cart.getCartItems();
         Product product = productService.getProductById(productId);
         for (CartItem cartItem : cartItems) {
             if (product.getId() == cartItem.getProduct().getId()) {
@@ -63,6 +63,6 @@ public class CartItemController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void removeAllCartItems(@PathVariable(value = "cartId") int cartId) {
         Cart cart = cartService.getCartByCartId(cartId);
-        cartItemService.removeAllCartItems(cart.getCartItem());
+        cartItemService.removeAllCartItems(cart.getCartItems());
     }
 }

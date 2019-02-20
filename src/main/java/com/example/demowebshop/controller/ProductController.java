@@ -1,5 +1,6 @@
 package com.example.demowebshop.controller;
 
+import com.example.demowebshop.Util.RetryCommand;
 import com.example.demowebshop.model.Product;
 import com.example.demowebshop.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ public class ProductController {
     @Autowired
     private IProductService productService;
 
+    private RetryCommand<Product> retryCommand;
+
     @RequestMapping("/products")
     private List<Product> getAllProduct() {
         return productService.getAllProducts();
@@ -21,7 +24,8 @@ public class ProductController {
 
     @RequestMapping("/products/{id}")
     private Product getProduct(@PathVariable("id") int id) {
-        return productService.getProductById(id);
+        retryCommand = new RetryCommand<>(5);
+        return retryCommand.run(() -> productService.getProductById(id));
     }
 
     @RequestMapping("/products/delete/{id}")

@@ -16,7 +16,7 @@ public class Cart {
     private User user;
 
     @OneToMany
-    private List<CartItem> cartItem;
+    private List<CartItem> cartItems;
 
     private double totalPrice;
 
@@ -36,12 +36,12 @@ public class Cart {
         this.user = user;
     }
 
-    public List<CartItem> getCartItem() {
-        return cartItem;
+    public List<CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public void setCartItem(List<CartItem> cartItem) {
-        this.cartItem = cartItem;
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
     public double getTotalPrice() {

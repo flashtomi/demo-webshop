@@ -4,5 +4,5 @@ import com.example.demowebshop.model.PaymentServiceResponse;
 
 public interface IPaymentService {
 
-    PaymentServiceResponse callService(int amount);
+    PaymentServiceResponse pay(double totalPrice);
 }

@@ -15,6 +15,4 @@ public interface IProductService {
     void delete(int id);
 
     void updateProductTotalAmount(int id, int count);
-
-    void updateProductStock(int id, int amount);
 }
