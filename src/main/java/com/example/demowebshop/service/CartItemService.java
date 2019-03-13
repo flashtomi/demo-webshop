@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class CartItemService implements ICartItemService, Observer {
+public class CartItemService implements ICartItemService {
 
     @Autowired
     private CartItemRepository cartItemRepository;
@@ -33,9 +33,9 @@ public class CartItemService implements ICartItemService, Observer {
     }
 
     @Override
-    public void update(CartItem cartItem, int productId, int amount) {
-        Product product = productService.getProductById(productId);
-        product.setStock(product.getStock() + amount);
+    public void update(CartItem cartItem) {
+        Product product = cartItem.getProduct();
+        product.setStock(product.getStock() + cartItem.getQuantity());
         productService.saveOrUpdate(product);
     }
 }

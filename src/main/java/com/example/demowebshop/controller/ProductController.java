@@ -24,7 +24,6 @@ public class ProductController {
 
     @RequestMapping("/products/{id}")
     private Product getProduct(@PathVariable("id") int id) {
-        retryCommand = new RetryCommand<>(5);
         return retryCommand.run(() -> productService.getProductById(id));
     }
 

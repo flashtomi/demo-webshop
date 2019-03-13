@@ -23,10 +23,10 @@ public class CartService implements ICartService{
     }
 
     @Override
-    public void notifyObservers(int cartId) {
-        List<CartItem> cartItems = cartRepository.findById(cartId).getCartItems();
+    public void updateProducts(Cart cart) {
+        List<CartItem> cartItems = cartRepository.findById(cart.getId()).getCartItems();
         for (CartItem cartItem : cartItems) {
-            cartItemService.update(cartItem, cartItem.getId(), cartItem.getQuantity());
+            cartItemService.update(cartItem);
         }
     }
 }

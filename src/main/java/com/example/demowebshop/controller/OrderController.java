@@ -38,7 +38,7 @@ public class OrderController {
 
         paymentCacheProxy.pay(order.getCart().getTotalPrice());
 
-        cartService.notifyObservers(cartId);
+        cartService.updateProducts(cart);
 
         return "redirect:/checkout?cartId=" + cartId;
     }

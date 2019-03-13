@@ -6,5 +6,5 @@ public interface ICartService {
 
     Cart getCartByCartId(int CartId);
 
-    void notifyObservers(int cartId);
+    void updateProducts(Cart cart);
 }

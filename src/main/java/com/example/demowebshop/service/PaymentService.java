@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class PaymentService implements IPaymentService {
 
     @Override
-    public PaymentServiceResponse pay() {
+    public PaymentServiceResponse pay(double totalPrice) {
         connectToServer("PaymentService");
         return new PaymentServiceResponse(true);
     }

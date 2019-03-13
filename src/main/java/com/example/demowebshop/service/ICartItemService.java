@@ -9,4 +9,5 @@ public interface ICartItemService {
     void addCartItem(CartItem cartItem);
     void removeCartItem(int CartItemId);
     void removeAllCartItems(List<CartItem> cartItem);
+    void update(CartItem cartItem);
 }

@@ -1,6 +1,6 @@
 package com.example.demowebshop.controller;
 
-import com.example.demowebshop.Util.RunAndLogCallDurationDecorator;
+import com.example.demowebshop.Util.LogCallDurationDecorator;
 import com.example.demowebshop.Util.UserValidator;
 import com.example.demowebshop.model.User;
 import com.example.demowebshop.service.SecurityService;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
 
     @Autowired
-    private RunAndLogCallDurationDecorator runAndLogCallDurationDecorator;
+    private LogCallDurationDecorator logCallDurationDecorator;
 
     @Autowired
     private UserService userService;
@@ -43,7 +43,7 @@ public class UserController {
             return "registration";
         }
 
-        runAndLogCallDurationDecorator.run(() -> userService.save(userForm));
+        logCallDurationDecorator.run(() -> userService.save(userForm));
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
