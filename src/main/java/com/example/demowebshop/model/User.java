@@ -88,4 +88,9 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public boolean isPermitted(String permissionName) {
+        return roles.stream().flatMap(role -> role.getPermissions().stream())
+                .anyMatch(permission -> permission.getName().equalsIgnoreCase(permissionName));
+    }
 }
